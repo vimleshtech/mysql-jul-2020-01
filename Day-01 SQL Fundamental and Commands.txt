@@ -1,0 +1,1207 @@
+Todays' Topics
+=========================
+-MY SQL Server Architecture
+-SQL Command Type
+-DDL
+-DML
+-Primary key
+-Auto increment Keys
+-Where Clause
+-Operator
+-Case when
+-Order by
+-Group by
+-Aggregiate function 
+-Having 
+
+DBMS and RDBMS
+=========================== 
+DBMS: Database management system where we can store data in tabular format 
+	Example:
+		MS Excel
+		MS Access
+		CSV
+RDBMS: Relataional database management system
+     : RDBMS store data on client server architecutre
+       - our data can be stored on server(one central machine) and data can be access multiple client(independent machine)
+     Example:
+		MY SQL Server
+		MS SQL Server
+		Oracle
+		IBM DB2
+		PostgresSQL
+		MaridDB
+		.....					
+
+MY SQL Server Architecture: MY SQL server product managed by Oracle 
+=====================================================================
+
+Server:
+	MY SQL 
+	Download Link:
+		https://dev.mysql.com/downloads/windows/installer/5.7.html	
+Client (connector):
+	Console: is called terminal 
+		 - DOS
+		 - Linux Terminal		
+	GUI: Graphical User Interface
+		- HeidiSQL
+		- Workbench 
+		
+		Download Link:
+			https://www.heidisql.com/download.php
+					
+Server Details/Configuration:
+	Host Name(Server Name): 127.0.0.1 or localhost (is default server name)
+	User: 			root (root is default user)
+	Password: 		root.... (user defined password)
+
+
+
+
+-SQL Commands and Type
+==================================
+show databases;		--show list of existing database 
+create database <dbname>; -- create new database
+use <dbname>;		--switch database
+show tables;		--show list of existing tables
+
+Note:
+	-SQL satement is not case sensetive
+	-SQL statement should be terminated or end with ; (semicolon) in mysql 
+	-Press enter to execute the command after ; 
+	-NULL is default value in sql 
+Commands and Type
+=====================
+DDL: data definatino language
+   	- create		: ceate new objects (table, view, function , database...etc)
+ 	- alter			: modify existing object structure 
+	- drop			: remove the object 
+	- truncate 		: remove all rows from table but structure will remail same 
+DML: data manipulation language	
+	- insert		: save new row
+	- update		: modify data in existing row
+	- delete		: remove row 
+DCL: data control langauge
+	- create new user	
+	- grant access		: add access for user
+	- revoke access		: remove access for user
+TCL: transaction control language
+	- begin transaction	: start recording 
+	- commit		: save data 
+	- rollback		: cancel the changes 
+DQL: data query language
+	- select 		: view data 
+
+	
+Create table:
+	create table <tblname> 
+		(eid int, 
+		fname varchar(40), 
+		lname varchar(40), 
+		gender varchar(1), 
+		bsal int)
+
+Show table details:
+	desc <tblname>;	
+
+Save row:
+	insert into <tblname>(eid,fname,lname,gender) values(1,'raman','sinha','m');
+	insert into <tblname>(eid,fname,lname,gender,bsal) values(2,'rahul','sharma','m');
+
+
+Show data:
+	select * from <tblname>;  -- * show all columns
+	select eid,fname,lname from <tblname>; --show selected columns
+
+	
+Update data in existing row:
+	
+	update <tblname> set lname ='new value' where eid = val;
+	update <tblname> set lname ='new value', bsal=new_val where eid = val;
+	
+Delete exiting selected rows:
+	delete from <tblname> where eid=20;  --delete selected rows 
+	delete from <tblname>;  -- delete all rows
+
+
+Alter: Add new column in existing table
+ 	alter table <tblname> add country varchar(30);
+
+Alter: Modify data type and size
+	alter table <tblname> modify country varchar(100);
+
+Alter: Drop existing column
+	alter table <tblname> drop column country;
+	
+Drop: Delete table structure with data 	
+	drop table <tblname>;
+
+Truncate: Remove all rows from table but structure will remain same	
+	trunate table <tblname>;
+	
+	
+	
+-Primary key:
+====================================
+-Primary contains or allow unique value
+-Not allow null value
+-Value will be physically sorted 
+	1
+	5
+	10		
+
+create table <tblname>(eid int primary key, fname varchar(10), lname varchar(10));
+
+-Auto increment Keys
+=====================================
+-Value will be inserted automatically in sequenctial order
+
+create table <tblname>(eid int  auto_increment primary key, fname varchar(10), lname varchar(10));
+
+-Where Clause: is conditional statement which can be used to filter the rows
+====================================
+select * from <tblname> where condition;
+
+-Operator
+====================================
+Conditional Operator
+	=
+	>
+	>=
+	<
+	<=	
+	!=			not equal	
+	in
+	not in
+	between
+	not between
+	is null
+	is not null 
+Relational
+	and	: merge two or more than two condition , return value if both(all) condition will match
+	or	: merge two or more than two condition , return value either(any one or both) condition will match
+Wild card: pattern match 
+	like
+		%	: any char and any length after or before or contains 
+			'a%' any char and any length after a 
+
+		_	: any char and fix length after or before or contains 
+			'a___' any three chars after a 	
+
+Arithmetic
+	+
+	-
+	*
+	/
+	%
+
+-Case when
+===================================
+	select eid,name, case when gender='m' then 'male' else 'female' from employee;
+	
+-Order by: arrange data in asc or desc order
+==================================
+	select * from employee order by eid;	--defaut is in asc
+	select * from employee order by eid desc;
+	select * from employee order by fname desc;--  in a to a order
+	
+-Group by: to summarize the data by given category 
+===============================
+select gender, count(gender) from employee group by gender;
+
+
+-Aggregiate function 
+=============================
+count()		: return value count
+	select count(*) from <tblname> ; --return row count
+	select count(price) from <tblname>; --return value count, null value will be discarded
+
+max()		: return highest value
+min()		: return lowest value
+sum()		: return total
+avg()		: return mean 
+
+etc.
+
+
+-Having : filter the row after group by 
+===========================================
+-having can be used only with group by 
+
+
+Next Sesion Topics
+=================
+-Data Type
+-Constraints
+-Normalization
+-Index
+
+Next Sesion Topics
+=================
+subquery
+union 
+join 
+
+Next Sesion Topics
+=================
+view
+function 
+
+Next Sesion Topics
+============
+Procedure 
+
+
+Commands
+=============
+inventive7@inventive7-Virtual-Machine:~$ sudo mysql
+[sudo] password for inventive7: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 36
+Server version: 8.0.20-0ubuntu0.20.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| hrms               |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sales              |
+| sys                |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> create database hrms;
+ERROR 1007 (HY000): Can't create database 'hrms'; database exists
+mysql> create database tcs;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| hrms               |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sales              |
+| sys                |
+| tcs                |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> use tcs;
+Database changed
+mysql> show tables;
+Empty set (0.01 sec)
+
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> create table employee(eid int, fname varchar(30), flname(40), gender varchar(1), bsal int);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(40), gender varchar(1), bsal int)' at line 1
+mysql> create table employee(eid int, fname varchar(30),lname varchar(40), gend
+er varchar(1), bsal int);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_tcs |
++---------------+
+| employee      |
++---------------+
+1 row in set (0.01 sec)
+
+mysql> desc employee;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| eid    | int         | YES  |     | NULL    |       |
+| fname  | varchar(30) | YES  |     | NULL    |       |
+| lname  | varchar(40) | YES  |     | NULL    |       |
+| gender | varchar(1)  | YES  |     | NULL    |       |
+| bsal   | int         | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee;
+Empty set (0.00 sec)
+
+mysql> insert into employee values(1,'Raman','Sinha','M',67000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from employee;
++------+-------+-------+--------+-------+
+| eid  | fname | lname | gender | bsal  |
++------+-------+-------+--------+-------+
+|    1 | Raman | Sinha | M      | 67000 |
++------+-------+-------+--------+-------+
+1 row in set (0.00 sec)
+
+mysql> insert into employee values(2,'Monika','Sharma','F',37000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from employee;
++------+--------+--------+--------+-------+
+| eid  | fname  | lname  | gender | bsal  |
++------+--------+--------+--------+-------+
+|    1 | Raman  | Sinha  | M      | 67000 |
+|    2 | Monika | Sharma | F      | 37000 |
++------+--------+--------+--------+-------+
+2 rows in set (0.01 sec)
+
+mysql> insert into employee(eid,fname,gender) values(20,'Chahat','F');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from employee;
++------+--------+--------+--------+-------+
+| eid  | fname  | lname  | gender | bsal  |
++------+--------+--------+--------+-------+
+|    1 | Raman  | Sinha  | M      | 67000 |
+|    2 | Monika | Sharma | F      | 37000 |
+|   20 | Chahat | NULL   | F      |  NULL |
++------+--------+--------+--------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee;
++------+--------+--------+--------+-------+
+| eid  | fname  | lname  | gender | bsal  |
++------+--------+--------+--------+-------+
+|    1 | Raman  | Sinha  | M      | 67000 |
+|    2 | Monika | Sharma | F      | 37000 |
+|   20 | Chahat | NULL   | F      |  NULL |
++------+--------+--------+--------+-------+
+3 rows in set (0.01 sec)
+
+mysql> select eid,fname,bsal from employee;
++------+--------+-------+
+| eid  | fname  | bsal  |
++------+--------+-------+
+|    1 | Raman  | 67000 |
+|    2 | Monika | 37000 |
+|   20 | Chahat |  NULL |
++------+--------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into employee values(5,'Jasmeet','Singh','M',60000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee values(6,'Satyam','Singh','M',90000);
+^[[FQuery OK, 1 row affected (0.01 sec)
+
+mysql> select * from employee;
++------+---------+--------+--------+-------+
+| eid  | fname   | lname  | gender | bsal  |
++------+---------+--------+--------+-------+
+|    1 | Raman   | Sinha  | M      | 67000 |
+|    2 | Monika  | Sharma | F      | 37000 |
+|   20 | Chahat  | NULL   | F      |  NULL |
+|    5 | Jasmeet | Singh  | M      | 60000 |
+|    6 | Satyam  | Singh  | M      | 90000 |
++------+---------+--------+--------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee;
++------+---------+--------+--------+-------+
+| eid  | fname   | lname  | gender | bsal  |
++------+---------+--------+--------+-------+
+|    1 | Raman   | Sinha  | M      | 67000 |
+|    2 | Monika  | Sharma | F      | 37000 |
+|   20 | Chahat  | NULL   | F      |  NULL |
+|    5 | Jasmeet | Singh  | M      | 60000 |
+|    6 | Satyam  | Singh  | M      | 90000 |
++------+---------+--------+--------+-------+
+5 rows in set (0.00 sec)
+
+mysql> update employee set bsal = 34000 where eid =20;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++------+---------+--------+--------+-------+
+| eid  | fname   | lname  | gender | bsal  |
++------+---------+--------+--------+-------+
+|    1 | Raman   | Sinha  | M      | 67000 |
+|    2 | Monika  | Sharma | F      | 37000 |
+|   20 | Chahat  | NULL   | F      | 34000 |
+|    5 | Jasmeet | Singh  | M      | 60000 |
+|    6 | Satyam  | Singh  | M      | 90000 |
++------+---------+--------+--------+-------+
+5 rows in set (0.00 sec)
+
+mysql> update employee set lname='Pandey' bsal=112000 where eid=1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'bsal=112000 where eid=1' at line 1
+mysql> update employee set lname='Pandey', bsal=112000 where eid=1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++------+---------+--------+--------+--------+
+| eid  | fname   | lname  | gender | bsal   |
++------+---------+--------+--------+--------+
+|    1 | Raman   | Pandey | M      | 112000 |
+|    2 | Monika  | Sharma | F      |  37000 |
+|   20 | Chahat  | NULL   | F      |  34000 |
+|    5 | Jasmeet | Singh  | M      |  60000 |
+|    6 | Satyam  | Singh  | M      |  90000 |
++------+---------+--------+--------+--------+
+5 rows in set (0.00 sec)
+
+mysql> delete from employee where eid =20;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from employee;
++------+---------+--------+--------+--------+
+| eid  | fname   | lname  | gender | bsal   |
++------+---------+--------+--------+--------+
+|    1 | Raman   | Pandey | M      | 112000 |
+|    2 | Monika  | Sharma | F      |  37000 |
+|    5 | Jasmeet | Singh  | M      |  60000 |
+|    6 | Satyam  | Singh  | M      |  90000 |
++------+---------+--------+--------+--------+
+4 rows in set (0.01 sec)
+
+mysql> select * from employee;
++------+---------+--------+--------+--------+
+| eid  | fname   | lname  | gender | bsal   |
++------+---------+--------+--------+--------+
+|    1 | Raman   | Pandey | M      | 112000 |
+|    2 | Monika  | Sharma | F      |  37000 |
+|    5 | Jasmeet | Singh  | M      |  60000 |
+|    6 | Satyam  | Singh  | M      |  90000 |
++------+---------+--------+--------+--------+
+4 rows in set (0.00 sec)
+
+mysql> alter employee add country varchar(2);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'employee add country varchar(2)' at line 1
+mysql> alter employee add country varchar(2);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'employee add country varchar(2)' at line 1
+mysql> alter table employee add country varchar(2);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++------+---------+--------+--------+--------+---------+
+| eid  | fname   | lname  | gender | bsal   | country |
++------+---------+--------+--------+--------+---------+
+|    1 | Raman   | Pandey | M      | 112000 | NULL    |
+|    2 | Monika  | Sharma | F      |  37000 | NULL    |
+|    5 | Jasmeet | Singh  | M      |  60000 | NULL    |
+|    6 | Satyam  | Singh  | M      |  90000 | NULL    |
++------+---------+--------+--------+--------+---------+
+4 rows in set (0.00 sec)
+
+mysql> update employee set country='us';
+Query OK, 4 rows affected (0.01 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+
+mysql> select * from employee;
++------+---------+--------+--------+--------+---------+
+| eid  | fname   | lname  | gender | bsal   | country |
++------+---------+--------+--------+--------+---------+
+|    1 | Raman   | Pandey | M      | 112000 | us      |
+|    2 | Monika  | Sharma | F      |  37000 | us      |
+|    5 | Jasmeet | Singh  | M      |  60000 | us      |
+|    6 | Satyam  | Singh  | M      |  90000 | us      |
++------+---------+--------+--------+--------+---------+
+4 rows in set (0.00 sec)
+
+mysql> update employee set country='india' where eid=2;
+ERROR 1406 (22001): Data too long for column 'country' at row 2
+mysql> desc employee;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| eid     | int         | YES  |     | NULL    |       |
+| fname   | varchar(30) | YES  |     | NULL    |       |
+| lname   | varchar(40) | YES  |     | NULL    |       |
+| gender  | varchar(1)  | YES  |     | NULL    |       |
+| bsal    | int         | YES  |     | NULL    |       |
+| country | varchar(2)  | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> alter table employee modify country varchar(40);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc employee;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| eid     | int         | YES  |     | NULL    |       |
+| fname   | varchar(30) | YES  |     | NULL    |       |
+| lname   | varchar(40) | YES  |     | NULL    |       |
+| gender  | varchar(1)  | YES  |     | NULL    |       |
+| bsal    | int         | YES  |     | NULL    |       |
+| country | varchar(40) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> update employee set country='india' where eid=2;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++------+---------+--------+--------+--------+---------+
+| eid  | fname   | lname  | gender | bsal   | country |
++------+---------+--------+--------+--------+---------+
+|    1 | Raman   | Pandey | M      | 112000 | us      |
+|    2 | Monika  | Sharma | F      |  37000 | india   |
+|    5 | Jasmeet | Singh  | M      |  60000 | us      |
+|    6 | Satyam  | Singh  | M      |  90000 | us      |
++------+---------+--------+--------+--------+---------+
+4 rows in set (0.01 sec)
+
+mysql> alter table employee drop lname;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++------+---------+--------+--------+---------+
+| eid  | fname   | gender | bsal   | country |
++------+---------+--------+--------+---------+
+|    1 | Raman   | M      | 112000 | us      |
+|    2 | Monika  | F      |  37000 | india   |
+|    5 | Jasmeet | M      |  60000 | us      |
+|    6 | Satyam  | M      |  90000 | us      |
++------+---------+--------+--------+---------+
+4 rows in set (0.00 sec)
+
+mysql> truncate table employee;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> select * from employee;
+Empty set (0.01 sec)
+
+mysql> drop table employee;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> select * from employee;
+ERROR 1146 (42S02): Table 'tcs.employee' doesn't exist
+mysql> create table employee(eid int primary key, fname varchar(30),lname varch
+ar(40), gender varchar(1), bsal int);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into employee(fname,lname) values('nitin','sharma');
+ERROR 1364 (HY000): Field 'eid' doesn't have a default value
+mysql> insert into employee(eid,fname,lname) values(10,'nitin','sharma');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from employee;
++-----+-------+--------+--------+------+
+| eid | fname | lname  | gender | bsal |
++-----+-------+--------+--------+------+
+|  10 | nitin | sharma | NULL   | NULL |
++-----+-------+--------+--------+------+
+1 row in set (0.00 sec)
+
+mysql> insert into employee(eid,fname,lname) values(1,'Monika','sharma');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from employee;
++-----+--------+--------+--------+------+
+| eid | fname  | lname  | gender | bsal |
++-----+--------+--------+--------+------+
+|   1 | Monika | sharma | NULL   | NULL |
+|  10 | nitin  | sharma | NULL   | NULL |
++-----+--------+--------+--------+------+
+2 rows in set (0.00 sec)
+
+mysql> insert into employee(eid,fname,lname) values(5,'Chahat','sharma');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from employee;
++-----+--------+--------+--------+------+
+| eid | fname  | lname  | gender | bsal |
++-----+--------+--------+--------+------+
+|   1 | Monika | sharma | NULL   | NULL |
+|   5 | Chahat | sharma | NULL   | NULL |
+|  10 | nitin  | sharma | NULL   | NULL |
++-----+--------+--------+--------+------+
+3 rows in set (0.00 sec)
+
+mysql> create table product(pid int auto_increment primary key, pname varchar(40), pprice int, sprice int);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_tcs |
++---------------+
+| employee      |
+| product       |
++---------------+
+2 rows in set (0.00 sec)
+
+mysql> desc product;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| pid    | int         | NO   | PRI | NULL    | auto_increment |
+| pname  | varchar(40) | YES  |     | NULL    |                |
+| pprice | int         | YES  |     | NULL    |                |
+| sprice | int         | YES  |     | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+4 rows in set (0.01 sec)
+
+mysql> desc employee;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| eid    | int         | NO   | PRI | NULL    |       |
+| fname  | varchar(30) | YES  |     | NULL    |       |
+| lname  | varchar(40) | YES  |     | NULL    |       |
+| gender | varchar(1)  | YES  |     | NULL    |       |
+| bsal   | int         | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> insert into product(pname) varchar('Dove');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varchar('Dove')' at line 1
+mysql> insert into product(pname) values('Dove');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into product(pname) values('Iphone');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into product(pname) values('Dell Laptop');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from product;
++-----+-------------+--------+--------+
+| pid | pname       | pprice | sprice |
++-----+-------------+--------+--------+
+|   1 | Dove        |   NULL |   NULL |
+|   2 | Iphone      |   NULL |   NULL |
+|   3 | Dell Laptop |   NULL |   NULL |
++-----+-------------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> insert into product(pname) values('Hp Laptop');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into product(pname) values('Laptop');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into product(pname) values('TV');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into product(pname) values('Sony TV');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into product(pname) values('Samsung TV');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from product;
++-----+-------------+--------+--------+
+| pid | pname       | pprice | sprice |
++-----+-------------+--------+--------+
+|   1 | Dove        |   NULL |   NULL |
+|   2 | Iphone      |   NULL |   NULL |
+|   3 | Dell Laptop |   NULL |   NULL |
+|   4 | Hp Laptop   |   NULL |   NULL |
+|   5 | Laptop      |   NULL |   NULL |
+|   6 | TV          |   NULL |   NULL |
+|   7 | Sony TV     |   NULL |   NULL |
+|   8 | Samsung TV  |   NULL |   NULL |
++-----+-------------+--------+--------+
+8 rows in set (0.00 sec)
+
+mysql> 
+mysql> select * from product where pid=3;
++-----+-------------+--------+--------+
+| pid | pname       | pprice | sprice |
++-----+-------------+--------+--------+
+|   3 | Dell Laptop |   NULL |   NULL |
++-----+-------------+--------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from product where pid>3;
++-----+------------+--------+--------+
+| pid | pname      | pprice | sprice |
++-----+------------+--------+--------+
+|   4 | Hp Laptop  |   NULL |   NULL |
+|   5 | Laptop     |   NULL |   NULL |
+|   6 | TV         |   NULL |   NULL |
+|   7 | Sony TV    |   NULL |   NULL |
+|   8 | Samsung TV |   NULL |   NULL |
++-----+------------+--------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from product where pid>=3;
++-----+-------------+--------+--------+
+| pid | pname       | pprice | sprice |
++-----+-------------+--------+--------+
+|   3 | Dell Laptop |   NULL |   NULL |
+|   4 | Hp Laptop   |   NULL |   NULL |
+|   5 | Laptop      |   NULL |   NULL |
+|   6 | TV          |   NULL |   NULL |
+|   7 | Sony TV     |   NULL |   NULL |
+|   8 | Samsung TV  |   NULL |   NULL |
++-----+-------------+--------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select * from product where pid<3;
++-----+--------+--------+--------+
+| pid | pname  | pprice | sprice |
++-----+--------+--------+--------+
+|   1 | Dove   |   NULL |   NULL |
+|   2 | Iphone |   NULL |   NULL |
++-----+--------+--------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from product where pid<=3;
++-----+-------------+--------+--------+
+| pid | pname       | pprice | sprice |
++-----+-------------+--------+--------+
+|   1 | Dove        |   NULL |   NULL |
+|   2 | Iphone      |   NULL |   NULL |
+|   3 | Dell Laptop |   NULL |   NULL |
++-----+-------------+--------+--------+
+3 rows in set (0.01 sec)
+
+mysql> select * from product where pid!=3;
++-----+------------+--------+--------+
+| pid | pname      | pprice | sprice |
++-----+------------+--------+--------+
+|   1 | Dove       |   NULL |   NULL |
+|   2 | Iphone     |   NULL |   NULL |
+|   4 | Hp Laptop  |   NULL |   NULL |
+|   5 | Laptop     |   NULL |   NULL |
+|   6 | TV         |   NULL |   NULL |
+|   7 | Sony TV    |   NULL |   NULL |
+|   8 | Samsung TV |   NULL |   NULL |
++-----+------------+--------+--------+
+7 rows in set (0.00 sec)
+
+mysql> select * from product where pid in (1,4,5,6,8);
++-----+------------+--------+--------+
+| pid | pname      | pprice | sprice |
++-----+------------+--------+--------+
+|   1 | Dove       |   NULL |   NULL |
+|   4 | Hp Laptop  |   NULL |   NULL |
+|   5 | Laptop     |   NULL |   NULL |
+|   6 | TV         |   NULL |   NULL |
+|   8 | Samsung TV |   NULL |   NULL |
++-----+------------+--------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from product where pid not in (1,4,5,6,8);
++-----+-------------+--------+--------+
+| pid | pname       | pprice | sprice |
++-----+-------------+--------+--------+
+|   2 | Iphone      |   NULL |   NULL |
+|   3 | Dell Laptop |   NULL |   NULL |
+|   7 | Sony TV     |   NULL |   NULL |
++-----+-------------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from product where pname ='dove';
++-----+-------+--------+--------+
+| pid | pname | pprice | sprice |
++-----+-------+--------+--------+
+|   1 | Dove  |   NULL |   NULL |
++-----+-------+--------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from product where pname in ('dove','tv');
++-----+-------+--------+--------+
+| pid | pname | pprice | sprice |
++-----+-------+--------+--------+
+|   1 | Dove  |   NULL |   NULL |
+|   6 | TV    |   NULL |   NULL |
++-----+-------+--------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from product where pid between 3 and 7;
++-----+-------------+--------+--------+
+| pid | pname       | pprice | sprice |
++-----+-------------+--------+--------+
+|   3 | Dell Laptop |   NULL |   NULL |
+|   4 | Hp Laptop   |   NULL |   NULL |
+|   5 | Laptop      |   NULL |   NULL |
+|   6 | TV          |   NULL |   NULL |
+|   7 | Sony TV     |   NULL |   NULL |
++-----+-------------+--------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from product where pid not between 3 and 7;
++-----+------------+--------+--------+
+| pid | pname      | pprice | sprice |
++-----+------------+--------+--------+
+|   1 | Dove       |   NULL |   NULL |
+|   2 | Iphone     |   NULL |   NULL |
+|   8 | Samsung TV |   NULL |   NULL |
++-----+------------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from product where pid not between 3 and 7 and pname ='Dove';
++-----+-------+--------+--------+
+| pid | pname | pprice | sprice |
++-----+-------+--------+--------+
+|   1 | Dove  |   NULL |   NULL |
++-----+-------+--------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from product where pid not between 3 and 7 and pname ='tv';
+Empty set (0.00 sec)
+
+mysql> select * from product where pid not between 3 and 7 or  pname ='tv';
++-----+------------+--------+--------+
+| pid | pname      | pprice | sprice |
++-----+------------+--------+--------+
+|   1 | Dove       |   NULL |   NULL |
+|   2 | Iphone     |   NULL |   NULL |
+|   6 | TV         |   NULL |   NULL |
+|   8 | Samsung TV |   NULL |   NULL |
++-----+------------+--------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employee;
++-----+--------+--------+--------+------+
+| eid | fname  | lname  | gender | bsal |
++-----+--------+--------+--------+------+
+|   1 | Monika | sharma | NULL   | NULL |
+|   5 | Chahat | sharma | NULL   | NULL |
+|  10 | nitin  | sharma | NULL   | NULL |
++-----+--------+--------+--------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from product;
++-----+-------------+--------+--------+
+| pid | pname       | pprice | sprice |
++-----+-------------+--------+--------+
+|   1 | Dove        |   NULL |   NULL |
+|   2 | Iphone      |   NULL |   NULL |
+|   3 | Dell Laptop |   NULL |   NULL |
+|   4 | Hp Laptop   |   NULL |   NULL |
+|   5 | Laptop      |   NULL |   NULL |
+|   6 | TV          |   NULL |   NULL |
+|   7 | Sony TV     |   NULL |   NULL |
+|   8 | Samsung TV  |   NULL |   NULL |
++-----+-------------+--------+--------+
+8 rows in set (0.00 sec)
+
+mysql> select * from product where pname like 's%';
++-----+------------+--------+--------+
+| pid | pname      | pprice | sprice |
++-----+------------+--------+--------+
+|   7 | Sony TV    |   NULL |   NULL |
+|   8 | Samsung TV |   NULL |   NULL |
++-----+------------+--------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from product where pname like '%p';
++-----+-------------+--------+--------+
+| pid | pname       | pprice | sprice |
++-----+-------------+--------+--------+
+|   3 | Dell Laptop |   NULL |   NULL |
+|   4 | Hp Laptop   |   NULL |   NULL |
+|   5 | Laptop      |   NULL |   NULL |
++-----+-------------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from product where pname like '%a%';
++-----+-------------+--------+--------+
+| pid | pname       | pprice | sprice |
++-----+-------------+--------+--------+
+|   3 | Dell Laptop |   NULL |   NULL |
+|   4 | Hp Laptop   |   NULL |   NULL |
+|   5 | Laptop      |   NULL |   NULL |
+|   8 | Samsung TV  |   NULL |   NULL |
++-----+-------------+--------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select * from product where pname like 'l_____'
+    -> ;
++-----+--------+--------+--------+
+| pid | pname  | pprice | sprice |
++-----+--------+--------+--------+
+|   5 | Laptop |   NULL |   NULL |
++-----+--------+--------+--------+
+1 row in set (0.00 sec)
+
+mysql> select
+    -> 
+    -> 
+    -> 
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> select * from employee
+    -> ;
++-----+--------+--------+--------+------+
+| eid | fname  | lname  | gender | bsal |
++-----+--------+--------+--------+------+
+|   1 | Monika | sharma | NULL   | NULL |
+|   5 | Chahat | sharma | NULL   | NULL |
+|  10 | nitin  | sharma | NULL   | NULL |
++-----+--------+--------+--------+------+
+3 rows in set (0.00 sec)
+
+mysql> update employee set gender='m' where eid =10;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set gender='f' where eid !=10;
+Query OK, 2 rows affected (0.02 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from employee;
++-----+--------+--------+--------+------+
+| eid | fname  | lname  | gender | bsal |
++-----+--------+--------+--------+------+
+|   1 | Monika | sharma | f      | NULL |
+|   5 | Chahat | sharma | f      | NULL |
+|  10 | nitin  | sharma | m      | NULL |
++-----+--------+--------+--------+------+
+3 rows in set (0.01 sec)
+
+mysql> select eid,fname, lname, case when gender='m' then 'male' else 'female' from employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from employee' at line 1
+mysql> select eid,fname, lname, case when gender='m' then 'male' else 'female'
+end from employee;
++-----+--------+--------+----------------------------------------------------+
+| eid | fname  | lname  | case when gender='m' then 'male' else 'female' end |
++-----+--------+--------+----------------------------------------------------+
+|   1 | Monika | sharma | female                                             |
+|   5 | Chahat | sharma | female                                             |
+|  10 | nitin  | sharma | male                                               |
++-----+--------+--------+----------------------------------------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee order by fname desc;
++-----+--------+--------+--------+------+
+| eid | fname  | lname  | gender | bsal |
++-----+--------+--------+--------+------+
+|  10 | nitin  | sharma | m      | NULL |
+|   1 | Monika | sharma | f      | NULL |
+|   5 | Chahat | sharma | f      | NULL |
++-----+--------+--------+--------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee order by fname;
++-----+--------+--------+--------+------+
+| eid | fname  | lname  | gender | bsal |
++-----+--------+--------+--------+------+
+|   5 | Chahat | sharma | f      | NULL |
+|   1 | Monika | sharma | f      | NULL |
+|  10 | nitin  | sharma | m      | NULL |
++-----+--------+--------+--------+------+
+3 rows in set (0.01 sec)
+
+mysql> select * from employee order by eid;;
++-----+--------+--------+--------+------+
+| eid | fname  | lname  | gender | bsal |
++-----+--------+--------+--------+------+
+|   1 | Monika | sharma | f      | NULL |
+|   5 | Chahat | sharma | f      | NULL |
+|  10 | nitin  | sharma | m      | NULL |
++-----+--------+--------+--------+------+
+3 rows in set (0.00 sec)
+
+ERROR: 
+No query specified
+
+mysql> select * from employee order by eid;
++-----+--------+--------+--------+------+
+| eid | fname  | lname  | gender | bsal |
++-----+--------+--------+--------+------+
+|   1 | Monika | sharma | f      | NULL |
+|   5 | Chahat | sharma | f      | NULL |
+|  10 | nitin  | sharma | m      | NULL |
++-----+--------+--------+--------+------+
+3 rows in set (0.01 sec)
+
+mysql> select * from employee order by eid desc;
++-----+--------+--------+--------+------+
+| eid | fname  | lname  | gender | bsal |
++-----+--------+--------+--------+------+
+|  10 | nitin  | sharma | m      | NULL |
+|   5 | Chahat | sharma | f      | NULL |
+|   1 | Monika | sharma | f      | NULL |
++-----+--------+--------+--------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from product;
++-----+-------------+--------+--------+
+| pid | pname       | pprice | sprice |
++-----+-------------+--------+--------+
+|   1 | Dove        |   NULL |   NULL |
+|   2 | Iphone      |   NULL |   NULL |
+|   3 | Dell Laptop |   NULL |   NULL |
+|   4 | Hp Laptop   |   NULL |   NULL |
+|   5 | Laptop      |   NULL |   NULL |
+|   6 | TV          |   NULL |   NULL |
+|   7 | Sony TV     |   NULL |   NULL |
+|   8 | Samsung TV  |   NULL |   NULL |
++-----+-------------+--------+--------+
+8 rows in set (0.00 sec)
+
+mysql> update product set pprice =30 where pid = 1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update product set pprice =30, sprice=40 where pid = 1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update product set pprice =45000, sprice=76000 where pid = 2;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update product set pprice =45000, sprice=55000 where pid = 5;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from product;
++-----+-------------+--------+--------+
+| pid | pname       | pprice | sprice |
++-----+-------------+--------+--------+
+|   1 | Dove        |     30 |     40 |
+|   2 | Iphone      |  45000 |  76000 |
+|   3 | Dell Laptop |   NULL |   NULL |
+|   4 | Hp Laptop   |   NULL |   NULL |
+|   5 | Laptop      |  45000 |  55000 |
+|   6 | TV          |   NULL |   NULL |
+|   7 | Sony TV     |   NULL |   NULL |
+|   8 | Samsung TV  |   NULL |   NULL |
++-----+-------------+--------+--------+
+8 rows in set (0.01 sec)
+
+mysql> select max(pprice) from product;
++-------------+
+| max(pprice) |
++-------------+
+|       45000 |
++-------------+
+1 row in set (0.01 sec)
+
+mysql> select max(pprice), min (pprice)  from product;
+ERROR 1630 (42000): FUNCTION tcs.min does not exist. Check the 'Function Name Parsing and Resolution' section in the Reference Manual
+mysql> select max(pprice), min(pprice)  from product;
++-------------+-------------+
+| max(pprice) | min(pprice) |
++-------------+-------------+
+|       45000 |          30 |
++-------------+-------------+
+1 row in set (0.00 sec)
+
+mysql> select max(pprice), min(pprice), sum(sprice)  from product;
++-------------+-------------+-------------+
+| max(pprice) | min(pprice) | sum(sprice) |
++-------------+-------------+-------------+
+|       45000 |          30 |      131040 |
++-------------+-------------+-------------+
+1 row in set (0.00 sec)
+
+mysql> select max(pprice), min(pprice), sum(sprice),avg(sprice)  from product;
++-------------+-------------+-------------+-------------+
+| max(pprice) | min(pprice) | sum(sprice) | avg(sprice) |
++-------------+-------------+-------------+-------------+
+|       45000 |          30 |      131040 |  43680.0000 |
++-------------+-------------+-------------+-------------+
+1 row in set (0.00 sec)
+
+mysql> select max(pprice), min(pprice), sum(sprice),avg(sprice)  from product;
++-------------+-------------+-------------+-------------+
+| max(pprice) | min(pprice) | sum(sprice) | avg(sprice) |
++-------------+-------------+-------------+-------------+
+|       45000 |          30 |      131040 |  43680.0000 |
++-------------+-------------+-------------+-------------+
+1 row in set (0.00 sec)
+
+mysql> select count(*) from product;
++----------+
+| count(*) |
++----------+
+|        8 |
++----------+
+1 row in set (0.01 sec)
+
+mysql> select count(pid) from product;
++------------+
+| count(pid) |
++------------+
+|          8 |
++------------+
+1 row in set (0.01 sec)
+
+mysql> select count(pname) from product;
++--------------+
+| count(pname) |
++--------------+
+|            8 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select count(pprice) from product;
++---------------+
+| count(pprice) |
++---------------+
+|             3 |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee;
++-----+--------+--------+--------+------+
+| eid | fname  | lname  | gender | bsal |
++-----+--------+--------+--------+------+
+|   1 | Monika | sharma | f      | NULL |
+|   5 | Chahat | sharma | f      | NULL |
+|  10 | nitin  | sharma | m      | NULL |
++-----+--------+--------+--------+------+
+3 rows in set (0.00 sec)
+
+mysql> select gender, count(*) from employee;
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'tcs.employee.gender'; this is incompatible with sql_mode=only_full_group_by
+mysql> select gender, count(*) from employee group by gender;
++--------+----------+
+| gender | count(*) |
++--------+----------+
+| f      |        2 |
+| m      |        1 |
++--------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select gender, count(*) from employee group by gender having count(*) >1;
++--------+----------+
+| gender | count(*) |
++--------+----------+
+| f      |        2 |
++--------+----------+
+1 row in set (0.00 sec)
+
+mysql> 
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
