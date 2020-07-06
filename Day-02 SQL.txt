@@ -1,0 +1,139 @@
+Todays' Topics
+=========================
+-Data Type
+-Constraints
+-Normalization
+-Index
+
+Data Type
+======================
+---numeric without decimal---
+tinyint		2 byte = 16 bit		111
+int		4 byte			5567745
+bigit 		8 byte			76543343674444
+
+----numeric with decimal----------
+float			55.333
+double			5676.444
+numeric(5,2)		= 252.21
+
+------- alpha numeric ------
+char		fix size.
+		char(4) ='an' , rest 2 chars will not free 
+
+nchar		char(10)=' 学校 '
+
+varchar		dynamic size
+		varchar(10)='abc', rest 7 chars will be free 
+nvarchar
+text		text formated data: comma seperate, xml, ...., ....
+ntext		
+
+Note:
+		n: 		unicode (we can store multiple langauge)
+				unicode will take double size from non-unicode 
+		other than n: 	allow only english 	 
+
+-----Date------
+date			yyyy-mm-dd
+datetime		yyyy-mm-dd hh:mm:ss	
+time			hh:mm:ss	
+
+-------boolean----
+bit			true	1
+			false 	0
+
+----other----
+blob		:binary code 	
+varbinary 	:store encyrpted data
+	
+
+Constraint: is a rules and regulation which can applied over the column
+======================================================
+- properties of column is called constriant
+
+There are following constraints
+	- primary key		
+			- not null
+			- no duplicate
+			- physically sorted
+			- default cluster index (physically sorted)
+			- only one primary can be created on a table 
+			Example:
+				eid in employee table
+				oid in order table
+				did in department table
+				pid in product table
+				passport numer 
+				voter id number
+				aadhar number 
+	- foriegn key
+			- is referenctial column from one table to another table 
+			- we can store the value which is present in primary table
+				 Example: tbl_employee
+					  tbl_salary : we can insert value in eid column which is alredy present in tbl_employee table
+			- foreign key allow null value
+			- forient key allow duplicate value
+			eid in salary which is refered from employee table 
+			
+				
+	- unique
+			- allow single null
+			- no duplicate 
+			Example: employee
+			eid(pk) name email(uq) 			gender
+			1	a	ab@gmail.com		..
+			3	null	null			..
+			4	null	ff@gmail.com		..
+	
+		
+	- not null
+			- mandatory field, will not null value 
+	- default
+			- insert specified value automatically where user will not insert data 
+	- check 	
+			- allow data from given list 
+			gender ('M','F')
+			
+		
+Example:
+create table employee
+(
+eid 	int primary key,
+fname	varchar(20) not null,	
+lname	varchar(20),   -- default is a null
+email	varchar(30) unique,
+gender	char(1)	check (gender in ('M','F')) ,
+mobile	bigint unique.
+status	bit default 1,
+create_date datetime
+)
+ 
+CREATE TABLE salary
+(
+sid int auto_increment,
+ecode int foriegn key references employee(eid),
+basic int,
+hra int
+)
+
+	
+Index: is mechenisam to store data in sorted order
+     : we should use the index to speedup the query performance (search result)
+     : index decrease the writing performance 
+=============================================
+Example: table of content page in any textbook 
+There are following types of index
+	i. cluster		: physically sorted
+				: primary key is default cluster index
+	ii. non-cluster		:
+				logically sorted, store the data on B-Tree(binary tree)
+				Example:
+					30
+				10		100		
+			5	
+
+	iii. full-text cluster 
+
+
+
